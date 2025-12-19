@@ -2,22 +2,35 @@
 
 **Alex Zhou**
 
-#What problem is being solved?
+# What problem is being solved?
 
-The goal of this project is to design an autonomous agent that can learn to play a competitve, turn basec card game using reinforcement learning.
+The goal of this project is to design an autonomous agent that can learn to play a competitve, turn based card game using reinforcement learning.
 
 Specifically, the problem is to enable an AI to:
 - Decide which card to play from their hidden hand
 - Decide how much to bet under uncertainty
 - Decide whether to call or fold when facing an opponent's bet
 
+# Game Overview
+This is a strategic variant of the classic card game War:
+- Each player starts with 13 random cards (values 2-14, where 11-14 = J, Q, K, A)
+- Each player also starts with 1,000 coins
+- Each round:
+    - Player 1 bets first (AI goes first)
+    - The other player may call or fold
+    - Both players pay a fixed buy-in (50 coins)
+    - Both players pick a card to place
+    - Higher card wins the round and the pot
+- After 13 rounds (or bankruptcy), the higher balance wins
+
 # How to Run
+
 1) Train the AI (Optional)
 
 Run the training script first:
 python train_model.py
 
-You will be prompted for the number of training games (default - 100, recommended - 10,000)
+You will be prompted for the number of training games (default - 100, recommended - >10,000)
 - The Ai plays against a randomized opponent
 - The model is saved to war_ai_model.pkl
 
@@ -30,16 +43,6 @@ Python main.py
 - Displays balances, cards, bets, and outcomes
 
 
-# Game Overview
-This is a strategic variant of the classic card game War:
-- Each player starts with 13 random cards (values 2-14, where 11-14 = J, Q, K, A)
-- Each round:
-    - Player 1 bets first (AI goes first)
-    - The other player may call or fold
-    - Both players pay a fixed buy-in (50 coins)
-    - Both players pick a card to place
-    - Higher card wins the round and the pot
-- After 13 rounds (or bankruptcy), the higher balance wins
 
 # AI learning Approach
 The AI uses Q-learning, a model-free reinforcement learning algorithm.
@@ -66,7 +69,7 @@ The game state is categorized as such:
 **Software Components**
 The system is divided into two main programs:
 1) Training System (train_model.py)
-   - AI playus against a randomized opponent
+   - AI plays against a randomized opponent
    - Q-tables are updated after every round
    - Learned values are saved
 2) Gameplay system (main.py)
